@@ -36,6 +36,11 @@ const handleUserInput = function (key) {
     console.log('s: pressed');
     connection.write('Move: down');
   }
+  // Canned message
+  if (key === 'z') {
+    console.log('z: pressed');
+    connection.write('Say: Life is beautiful');
+  }
 };
 
 module.exports = {
