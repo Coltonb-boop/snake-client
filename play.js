@@ -1,12 +1,16 @@
-const stdin = process.stdin;
-stdin.setRawMode(true);
-stdin.setEncoding('utf-8');
-
 const { connect } = require('./client');
-
 const conn = connect();
 
-stdin.on('data', key => {
+const setupInput = function () {
+  const stdin = process.stdin;
+  stdin.setRawMode(true);
+  stdin.setEncoding("utf8");
+  stdin.resume();
+  stdin.on("data", handleUserInput);
+  return stdin;
+};
+
+const handleUserInput = function (key) {
   // \u0003 maps to ctrl+c input
   if (key === '\u0003') {
     process.exit();
@@ -18,17 +22,23 @@ stdin.on('data', key => {
   }
   // Move up
   if (key === 'w') {
-    console.log('d: pressed');
+    console.log('w: pressed');
     conn.write('Move: up');
   }
   // Move left
   if (key === 'a') {
-    console.log('d: pressed');
+    console.log('a: pressed');
     conn.write('Move: left');
   }
   // Move down
   if (key === 's') {
-    console.log('d: pressed');
+    console.log('s: pressed');
     conn.write('Move: down');
   }
-});
+};
+
+setupInput();
+
+// stdin.on('data', key => {
+  
+// });
