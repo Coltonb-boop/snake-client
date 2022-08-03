@@ -4,7 +4,7 @@ const net = require('net');
 const connect = () => {
   console.log('Connecting...');
   const conn = net.createConnection({
-    host: '172.31.40.113',
+    host: '165.227.47.243',
     port: 50541
   });
 
